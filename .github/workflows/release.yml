@@ -9,7 +9,7 @@
 #   SIGNING_KEYSTORE_PASSWORD  keystore password
 #   SIGNING_KEY_ALIAS          key alias
 #   SIGNING_KEY_PASSWORD       key password
-# See "Publishing a release" in README.md.
+# See "Выпуск релиза" in README.md (English: "Publishing a release" in README.en.md).
 
 name: Release
 
