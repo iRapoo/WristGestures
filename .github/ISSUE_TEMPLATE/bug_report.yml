@@ -1,0 +1,39 @@
+name: Проблема / Bug report
+description: Что-то работает не так / Something does not work
+labels: [bug]
+body:
+  - type: input
+    id: watch
+    attributes:
+      label: Модель часов / Watch model
+      placeholder: Mobvoi TicWatch Pro 3 GPS
+    validations:
+      required: true
+  - type: input
+    id: wearos
+    attributes:
+      label: Версия Wear OS и сборка / Wear OS version and build
+      description: Настройки → Система → О часах / Settings → System → About
+      placeholder: Wear OS 3.5, RMRB.240228.002
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: Версия приложения / App version
+      placeholder: "1.0.2"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: Что случилось / What happened
+      description: Что делали, что ожидали, что произошло / What you did, what you expected, what happened
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Журнал (необязательно) / Log (optional)
+      description: "adb logcat -d -s WristGestures"
+      render: text

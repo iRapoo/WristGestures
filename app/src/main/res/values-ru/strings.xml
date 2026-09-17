@@ -9,15 +9,14 @@
     <string name="no_gyroscope">На этих часах нет гироскопа</string>
 
     <string name="test_prompt">Поверните кисть для проверки</string>
-    <string name="live_values">X %1$4.1f  Y %2$4.1f  Z %3$4.1f</string>
+    <string name="live_values">X %1$.1f   Y %2$.1f   Z %3$.1f</string>
 
     <string name="gesture_flick_out">От себя</string>
     <string name="gesture_flick_in">К себе</string>
     <string name="gesture_shake">Встряхивание</string>
 
     <string name="enabled">Жесты</string>
-    <string name="sensitivity">Чувствительность</string>
-    <string name="sensitivity_value">%1$d\n%2$.1f рад/с</string>
+    <string name="sensitivity_caption">Чувствительность\n%1$.1f рад/с</string>
     <string name="minus">−</string>
     <string name="plus">+</string>
     <string name="invert">Обратное направление</string>

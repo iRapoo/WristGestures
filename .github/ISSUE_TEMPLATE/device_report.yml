@@ -1,0 +1,38 @@
+name: Отзыв о часах / Device report
+description: Расскажите, как приложение работает на ваших часах / Tell how the app works on your watch
+labels: [device report]
+body:
+  - type: input
+    id: watch
+    attributes:
+      label: Модель часов / Watch model
+    validations:
+      required: true
+  - type: input
+    id: wearos
+    attributes:
+      label: Версия Wear OS и сборка / Wear OS version and build
+      description: Настройки → Система → О часах / Settings → System → About
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: Версия приложения / App version
+    validations:
+      required: true
+  - type: checkboxes
+    id: works
+    attributes:
+      label: Что работает / What works
+      options:
+        - label: Поворот от себя открывает уведомления / Flick out opens notifications
+        - label: Поворот к себе закрывает уведомления / Flick in closes notifications
+        - label: Поворот к себе открывает быстрые настройки / Flick in opens quick settings
+        - label: Прокрутка в списках и приложениях / Scrolling in lists and apps
+        - label: Встряхивание возвращает назад / Shake goes back
+  - type: textarea
+    id: notes
+    attributes:
+      label: Комментарии / Notes
+      description: Чувствительность, случайные срабатывания, батарея / Sensitivity, false triggers, battery

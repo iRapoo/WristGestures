@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- About 15% / 10% of a typical round screen, so edges are not clipped. -->
-    <dimen name="round_padding_horizontal">24dp</dimen>
+    <!--
+        About 16% / 14% of a typical round screen (≈227 dp wide), so rows near the top and bottom
+        of the circle are not clipped. 24 dp cut off the start of labels on a TicWatch Pro 3.
+    -->
+    <dimen name="round_padding_horizontal">36dp</dimen>
     <dimen name="round_padding_vertical">32dp</dimen>
 </resources>

@@ -70,9 +70,14 @@ jobs:
             -PversionCode=${{ steps.version.outputs.code }}
           cp app/build/outputs/apk/release/app-release.apk \
             "WristGestures-${{ steps.version.outputs.name }}.apk"
+          # Same file under a fixed name, so README can link to
+          # releases/latest/download/WristGestures.apk that never goes stale.
+          cp app/build/outputs/apk/release/app-release.apk WristGestures.apk
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          files: WristGestures-${{ steps.version.outputs.name }}.apk
+          files: |
+            WristGestures-${{ steps.version.outputs.name }}.apk
+            WristGestures.apk
           generate_release_notes: true

@@ -9,15 +9,14 @@
     <string name="no_gyroscope">This watch has no gyroscope</string>
 
     <string name="test_prompt">Flick your wrist to test</string>
-    <string name="live_values">X %1$4.1f  Y %2$4.1f  Z %3$4.1f</string>
+    <string name="live_values">X %1$.1f   Y %2$.1f   Z %3$.1f</string>
 
     <string name="gesture_flick_out">Flick out</string>
     <string name="gesture_flick_in">Flick in</string>
     <string name="gesture_shake">Shake</string>
 
     <string name="enabled">Gestures</string>
-    <string name="sensitivity">Sensitivity</string>
-    <string name="sensitivity_value">%1$d\n%2$.1f rad/s</string>
+    <string name="sensitivity_caption">Sensitivity\n%1$.1f rad/s</string>
     <string name="minus">−</string>
     <string name="plus">+</string>
     <string name="invert">Invert direction</string>

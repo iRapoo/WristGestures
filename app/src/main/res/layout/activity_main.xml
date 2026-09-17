@@ -44,7 +44,7 @@
         <TextView
             android:id="@+id/live_values"
             style="@style/Caption"
-            android:fontFamily="monospace" />
+            android:maxLines="1" />
 
         <Switch
             android:id="@+id/enabled_switch"
@@ -53,9 +53,9 @@
 
         <!-- Sensitivity: [-] value [+] -->
         <TextView
+            android:id="@+id/sensitivity_caption"
             style="@style/Caption"
-            android:layout_marginTop="8dp"
-            android:text="@string/sensitivity" />
+            android:layout_marginTop="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,7 +74,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
             <Button
                 android:id="@+id/sensitivity_plus"

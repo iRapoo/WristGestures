@@ -44,6 +44,7 @@ class MainActivity : Activity() {
     private lateinit var lastGesture: TextView
     private lateinit var liveValues: TextView
     private lateinit var enabledSwitch: Switch
+    private lateinit var sensitivityCaption: TextView
     private lateinit var sensitivityValue: TextView
     private lateinit var axisButton: Button
     private lateinit var invertSwitch: Switch
@@ -67,6 +68,7 @@ class MainActivity : Activity() {
         lastGesture = findViewById(R.id.last_gesture)
         liveValues = findViewById(R.id.live_values)
         enabledSwitch = findViewById(R.id.enabled_switch)
+        sensitivityCaption = findViewById(R.id.sensitivity_caption)
         sensitivityValue = findViewById(R.id.sensitivity_value)
         axisButton = findViewById(R.id.axis_button)
         invertSwitch = findViewById(R.id.invert_switch)
@@ -131,9 +133,10 @@ class MainActivity : Activity() {
     private fun refresh() {
         serviceStatus.setText(if (isServiceEnabled()) R.string.service_on else R.string.service_off)
         enabledSwitch.isChecked = settings.enabled
-        sensitivityValue.text = getString(
-            R.string.sensitivity_value, settings.sensitivity, GestureSettings.thresholdFor(settings.sensitivity),
+        sensitivityCaption.text = getString(
+            R.string.sensitivity_caption, GestureSettings.thresholdFor(settings.sensitivity),
         )
+        sensitivityValue.text = settings.sensitivity.toString()
         axisButton.text = getString(R.string.axis, settings.axis.name)
         invertSwitch.isChecked = settings.invert
         hapticsSwitch.isChecked = settings.haptics

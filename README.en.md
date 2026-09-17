@@ -2,62 +2,84 @@
 
 [Русская версия](README.md)
 
+[![Latest release](https://img.shields.io/github/v/release/iRapoo/WristGestures)](https://github.com/iRapoo/WristGestures/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/iRapoo/WristGestures/total)](https://github.com/iRapoo/WristGestures/releases)
+[![Build](https://github.com/iRapoo/WristGestures/actions/workflows/release.yml/badge.svg)](https://github.com/iRapoo/WristGestures/actions/workflows/release.yml)
+![Wear OS 3+](https://img.shields.io/badge/Wear%20OS-3%2B-4285F4)
+[![License MIT](https://img.shields.io/github/license/iRapoo/WristGestures)](LICENSE)
+
 Brings back the **wrist gestures** that Wear OS 2 had and that disappeared after the update to
-Wear OS 3 (for example on the Mobvoi TicWatch Pro 3): flick your wrist to open notifications
-and scroll through them, without touching the screen.
+Wear OS 3 (for example on the Mobvoi TicWatch Pro 3). Flick your wrist to open notifications
+and quick settings and to scroll lists, without touching the screen.
 
-| Gesture | What it looks like | Default action |
+<p align="center">
+  <a href="https://github.com/iRapoo/WristGestures/releases/latest/download/WristGestures.apk">
+    <img src="https://img.shields.io/badge/Download-APK-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download APK" height="44">
+  </a>
+  <br>
+  <sub>Latest version · <a href="https://github.com/iRapoo/WristGestures/releases">all releases</a> · <a href="#installation">how to install</a></sub>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/main.png" width="230" alt="Main screen: gesture test">
+  <img src="docs/screenshots/sensitivity.png" width="230" alt="Sensitivity setting">
+  <img src="docs/screenshots/actions.png" width="230" alt="Choosing actions for gestures">
+</p>
+
+<sub>Screenshots show the Russian UI; the app is also available in English.</sub>
+
+| Gesture | How to do it | Default action |
 |---|---|---|
-| **Flick out** | quickly turn the wrist away from you and back | scroll down; on the watch face — open notifications |
-| **Flick in** | quickly turn the wrist towards you and back | scroll up; at the top of a list — go back (closes notifications); on the watch face — open quick settings |
-| **Shake** | several fast turns back and forth | back |
+| **Flick out** | quickly turn the wrist away from you and back | on the watch face: open notifications; in lists: scroll down; in quick settings: close them |
+| **Flick in** | quickly turn the wrist towards you and back | on the watch face: open quick settings; in lists: scroll up; at the top of a list: close the screen |
+| **Shake** | 2–3 quick turns back and forth, as if shaking off water | back (nothing on the watch face) |
 
-Every action can be changed in the app. No root, no internet permission, no data collection.
-
-> **Status:** early version. Developed and tested on a TicWatch Pro 3 GPS
-> (Wear OS 3.5, build RMRB.240228.002). Other watches should work if they have a gyroscope,
-> but the notification swipe may need tuning — reports are welcome.
+Gestures work across the whole UI: notifications, the app list, settings and regular apps.
+Every action can be changed. **No root, no internet permission, no data leaves the watch.**
 
 ---
 
 ## Contents
 
+- [Tested watches](#tested-watches)
 - [How it works in short](#how-it-works-in-short)
-- [Requirements](#requirements)
 - [Installation](#installation)
-  - [1. Connect to the watch with ADB](#1-connect-to-the-watch-with-adb)
-  - [2. Get the APK](#2-get-the-apk)
-  - [3. Install](#3-install)
-  - [4. Enable the accessibility service](#4-enable-the-accessibility-service)
 - [Setup and calibration](#setup-and-calibration)
 - [Battery](#battery)
-- [Privacy and permissions](#privacy-and-permissions)
+- [Privacy and security](#privacy-and-security)
 - [Troubleshooting](#troubleshooting)
+- [Reporting a problem](#reporting-a-problem)
 - [Uninstalling](#uninstalling)
 - [For developers](#for-developers)
 - [License](#license)
 
 ---
 
+## Tested watches
+
+| Watch | Wear OS version | Result |
+|---|---|---|
+| Mobvoi TicWatch Pro 3 GPS | 3.5 (RMRB.240228.002) | everything works |
+
+The project is young and has been tested on one model so far. Other Wear OS 3+ watches with a
+gyroscope should work too, but system UIs differ between manufacturers. If you tried it on your
+watch, [let us know](#reporting-a-problem) how it went, and the model will be added to the table.
+
 ## How it works in short
 
 1. While the screen is on, the app reads the **gyroscope** 50 times per second.
-2. A flick is a short fast rotation followed by a rotation back. The recognizer looks for this
-   pattern and ignores slow movements such as raising your wrist to look at the watch.
-   Details: [docs/ALGORITHM.md](docs/ALGORITHM.md).
-3. The recognized gesture is turned into an action through an **accessibility service**, which
-   is the only way for a regular app to scroll other apps and emulate touches on Wear OS.
-   Wear OS 3 has no command to open the notification shade, so the app performs the same
-   swipe up that your finger would.
+2. A flick is a short fast rotation followed by an equally fast rotation back. The recognizer
+   looks for exactly this pattern and ignores slow movements such as raising your wrist to look
+   at the watch. Details: [docs/ALGORITHM.md](docs/ALGORITHM.md).
+3. The action is performed by an **accessibility service**, which is the only way for a regular
+   app to scroll screens and emulate touches on Wear OS.
 4. When the screen goes off or into ambient mode, the gyroscope is released.
 
-## Requirements
-
-- A watch with **Wear OS 3 or newer** (Android 11 / API 30+) and a **gyroscope**.
-- A computer with **ADB** ([Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools)).
-  It is needed once, to install the app and enable the service.
-
 ## Installation
+
+You need a watch with **Wear OS 3 or newer** (Android 11+) and a **gyroscope**, and a computer
+with **ADB** ([Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools)).
+The computer is needed once, to install the app and enable the service.
 
 ### 1. Connect to the watch with ADB
 
@@ -89,37 +111,27 @@ Confirm the debugging prompt on the watch if it appears.
 > Bluetooth. If the connection drops, open Wi-Fi settings on the watch and keep the screen on
 > while running commands.
 
-### 2. Get the APK
+### 2. Download the APK
 
-**Download** `WristGestures-x.y.z.apk` from the
-[latest release](https://github.com/iRapoo/WristGestures/releases/latest).
-Every release is built from the tagged source code by GitHub Actions.
+Download [WristGestures.apk](https://github.com/iRapoo/WristGestures/releases/latest/download/WristGestures.apk)
+from the latest release. Every release is built by GitHub Actions straight from the tagged
+source code; the [build log](https://github.com/iRapoo/WristGestures/actions) is public.
 
-Or **build it yourself**:
-
-```bash
-git clone https://github.com/iRapoo/WristGestures.git
-cd WristGestures
-./gradlew assembleRelease        # Windows: gradlew.bat assembleRelease
-```
-
-The APK will be in `app/build/outputs/apk/release/app-release.apk`.
-Building requires JDK 17+ and the Android SDK (the easiest way is to open the project in
-Android Studio, which installs both). A self-built APK is signed with your local debug key, so
-it cannot update the official release: uninstall one before installing the other.
+To build it yourself, see [For developers](#for-developers).
 
 ### 3. Install
 
 ```bash
-adb install -r WristGestures-1.0.1.apk
+adb install -r WristGestures.apk
 ```
 
-Updating to a newer release works the same way; settings and the enabled service are kept.
+A newer version is installed with the same command over the old one. Settings and the enabled
+service are kept.
 
 ### 4. Enable the accessibility service
 
-The service does all the work and has to be enabled once. It stays enabled after reboots
-and app updates.
+The service does all the work and has to be enabled once. It stays enabled after reboots and
+app updates.
 
 **Option A — on the watch.** Open **Settings → Accessibility** and turn on **Wrist Gestures**,
 or press **Accessibility settings** at the bottom of the app screen.
@@ -150,13 +162,13 @@ Open the app: the top line should say **Service is on**.
 
 ## Setup and calibration
 
-Open **Wrist Gestures** on the watch. While this screen is open, gestures are only
-**shown** in the box at the top and are not executed, so you can safely experiment.
+Open **Wrist Gestures** on the watch. While this screen is open, gestures are only **shown** in
+the box at the top and are not executed, so you can safely experiment.
 
 | Setting | What it does |
 |---|---|
 | **Gestures** | Master switch. When off, the gyroscope is not used at all. |
-| **Sensitivity** | 1 = only strong flicks, 10 = light flicks. The number below is the threshold in rad/s. If gestures trigger by accident, lower it; if they are hard to trigger, raise it. |
+| **Sensitivity** | 1 = only strong flicks, 10 = light flicks. The threshold in rad/s is shown above the buttons. If gestures trigger by accident, lower it; if they are hard to trigger, raise it. |
 | **Invert direction** | Swaps "flick out" and "flick in". Turn it on if the directions are reversed, e.g. when the watch is on the right wrist. |
 | **Vibration** | A short tick when a gesture is recognized. |
 | **Actions** | Tap a row to cycle through actions for that gesture: nothing, scroll down / notifications, scroll up / back, notifications, back, watch face. |
@@ -164,14 +176,14 @@ Open **Wrist Gestures** on the watch. While this screen is open, gestures are on
 
 Recommended routine:
 
-1. Put the watch on the wrist, open the app.
+1. Put the watch on and open the app.
 2. Do a few flicks out and in. Check that the box shows the correct direction; if it is
    reversed, turn on **Invert direction**.
-3. Move your arm normally, raise the wrist, gesticulate. If the box shows false gestures, reduce
+3. Move your arm normally, raise the wrist, gesticulate. If the box shows false gestures, lower
    **Sensitivity**.
-4. Leave the app and try it on the watch face: flick out opens notifications, flick out again
-   scrolls, flick in scrolls back, and at the top it closes notifications. Flick in on the watch
-   face opens quick settings, flick out closes them.
+4. Go to the watch face and try it: flick out opens notifications, flick out again scrolls down,
+   flick in scrolls up, and at the top notifications close. Flick in on the watch face opens
+   quick settings, flick out closes them.
 
 **Gestures work only when the screen is on** (not in ambient mode), the same as on Wear OS 2.
 Raise the wrist or tap the screen first.
@@ -182,42 +194,81 @@ Raise the wrist or tap the screen first.
   with the screen off. In standby the app does nothing.
 - While the screen is on, the app processes 50 samples per second with a few arithmetic
   operations each; it does not keep the CPU awake by itself.
-- If you notice a difference in battery life, please report it together with your watch model.
+- There are no precise battery measurements yet. If you notice a difference in battery life,
+  please report it together with your watch model.
 
-## Privacy and permissions
+## Privacy and security
+
+An accessibility service is a powerful permission, so here is everything the app does with it:
 
 | Permission / capability | Why |
 |---|---|
-| Accessibility service: *perform gestures* | Emulating a swipe to open notifications. |
-| Accessibility service: *retrieve window content* | Finding the scrollable list on screen to scroll it. The service subscribes only to window changes and does not read or store anything in the background. |
+| Accessibility: *perform gestures* | Emulating a swipe where a list cannot be scrolled directly. |
+| Accessibility: *retrieve window content* | Finding the scrollable list on screen to scroll it. The content is read only at the moment of a gesture and is never stored or sent anywhere. |
 | `VIBRATE` | Haptic feedback. |
-| Gyroscope | Gesture recognition. No permission is needed. |
+| Gyroscope | Gesture recognition. No permission needed. |
 
-The app has **no INTERNET permission**, so it physically cannot send anything anywhere.
-The source code is short and fully commented; you are encouraged to read it.
+- The app has **no INTERNET permission**, so it physically cannot send anything anywhere. You
+  can see it in [AndroidManifest.xml](app/src/main/AndroidManifest.xml).
+- No third-party libraries, analytics or ads: only the Android framework.
+- The source code is short and fully commented.
+
+### Verifying the APK
+
+All official releases are signed with the same key. SHA-256 fingerprint of the certificate:
+
+```
+b5a17b1d96e9e53abe4180d176215002c05cfdcf9c0dedc2ef0a1ab1f19f34bc
+```
+
+To check a downloaded file (`apksigner` is part of Android SDK Build Tools):
+
+```bash
+apksigner verify --print-certs WristGestures.apk
+```
+
+The `Signer #1 certificate SHA-256 digest` line must match the fingerprint above. If it does
+not, the file is not an official build.
 
 ## Troubleshooting
 
 **"Service is off" although I enabled it.**
-Check with `adb shell settings get secure enabled_accessibility_services` that our component is
-in the list and `adb shell settings get secure accessibility_enabled` returns `1`. After
-reinstalling the app from a different signature, enable it again.
+**Force-stopping** the app ("Force stop" in settings or `am force-stop`) disables the service:
+Android removes it from the enabled list. Enable it again (installation step 4). If the service
+still does not start after the ADB commands, reset the list and set it again:
 
-**Nothing happens on the watch face, but the test box shows gestures.**
-The service may have been stopped by the system. Toggle it off and on (or run the ADB commands
-again). Also make sure the flick action is not set to *nothing*.
+```bash
+adb shell settings put secure enabled_accessibility_services null
+adb shell settings put secure enabled_accessibility_services xyz.quenix.wristgestures/.service.GestureService
+adb shell settings put secure accessibility_enabled 1
+```
 
-**Flick on the watch face switches tiles instead of opening notifications.**
-Your watch's system UI exposes the watch face as a scrollable container. Please open an issue
-with the output of `adb logcat -s WristGestures` from a **debug** build (it prints the screen
-structure before every action).
+**`INSTALL_FAILED_UPDATE_INCOMPATIBLE` when installing.**
+The watch has a version signed with a different key (for example a self-built one). Uninstall it
+(`adb uninstall xyz.quenix.wristgestures`), install again and re-enable the service.
+
+**The test box shows gestures, but nothing happens on screen.**
+Check that the service is on (top line of the app) and that the gesture is not set to *nothing*.
+While the app screen is open, gestures are intentionally not executed.
+
+**Directions are reversed.** Turn on **Invert direction**.
 
 **Accidental triggers while walking or typing.**
 Lower sensitivity, or set the problematic gesture to *nothing*.
 
-**The watch lags after installing.**
-The service has no UI and does very little work, so this is unlikely. Turn the service off to
-check, and report the watch model if it helps.
+**A flick on the watch face does something other than described.**
+Your watch's system UI is organized differently from the TicWatch one. Please report it (see
+below) so support can be added.
+
+## Reporting a problem
+
+Open an [issue](https://github.com/iRapoo/WristGestures/issues/new/choose) and include:
+
+- the watch model and Wear OS version (**Settings → System → About**);
+- the app version;
+- what you did, what you expected and what happened.
+
+"Works on my watch" reports are very helpful too.
 
 ## Uninstalling
 
@@ -229,6 +280,19 @@ or uninstall it from the watch's app list. The accessibility setting is cleaned 
 automatically.
 
 ## For developers
+
+### Building
+
+```bash
+git clone https://github.com/iRapoo/WristGestures.git
+cd WristGestures
+./gradlew testDebugUnitTest   # recognizer unit tests, no watch needed
+./gradlew assembleRelease     # Windows: gradlew.bat assembleRelease
+```
+
+Requires JDK 17+ and the Android SDK; the easiest way is to open the project in Android Studio.
+The APK will be in `app/build/outputs/apk/release/app-release.apk`. A self-built APK is signed
+with your local debug key and cannot update the official release.
 
 ### Project structure
 
@@ -245,34 +309,31 @@ app/src/main/java/xyz/quenix/wristgestures/
 ├── ui/
 │   └── MainActivity.kt        # settings + live calibration screen
 └── LiveState.kt               # "calibration screen is open" flag shared with the service
-app/src/test/.../FlickRecognizerTest.kt   # synthetic-signal tests of the recognizer
-docs/ALGORITHM.md                          # detailed description of gesture recognition
 ```
 
 The app uses only the Android framework, with no AndroidX or other libraries, to stay small
 on watches with 1 GB of RAM.
 
-### Build and test
+### Debugging
 
 ```bash
-./gradlew testDebugUnitTest   # recognizer unit tests, no device needed
-./gradlew installDebug        # build and install the debug build on a connected watch
-adb logcat -s WristGestures   # debug build logs gestures, actions and screen structure
+./gradlew installDebug        # debug build on the connected watch
+adb logcat -s WristGestures   # gestures, actions and screen structure before every action
 ```
 
 The debug build also accepts gestures from the computer, so actions can be tested without
 moving the wrist:
 
 ```bash
-# Ignore the real gyroscope while testing (sent again with false to resume)
+# Ignore the real gyroscope while testing (send false to resume)
 adb shell am broadcast -a xyz.quenix.wristgestures.DEBUG_GESTURE --ez pause_sensor true
 
 # Trigger a gesture: FLICK_OUT, FLICK_IN or SHAKE
 adb shell am broadcast -a xyz.quenix.wristgestures.DEBUG_GESTURE --es gesture FLICK_OUT
 ```
 
-The debug log prints every movement the recognizer sees, which is the fastest way to tune
-thresholds on a new watch:
+The log shows every movement the recognizer sees, which is the fastest way to tune thresholds
+on a new watch:
 
 ```
 lobe sign=-1 peak=6,6 duration=77ms gap=0ms
@@ -280,60 +341,12 @@ lobe sign=1 peak=19,6 duration=97ms gap=38ms
 sequence lobes=2 -> FLICK_IN
 ```
 
-### How the system UI is handled
+### Documentation
 
-Findings on the Mobvoi TicWatch Pro 3 system UI (`com.mobvoi.wear.refsysui`), which the
-action logic in `ActionPerformer` is built around:
-
-- The **watch face** is a full-screen vertical pager. Scrolling it forward opens notifications,
-  scrolling it back opens quick settings. That is why flick out on the watch face opens
-  notifications and flick in opens quick settings.
-- **Quick settings** is a container that can only scroll forward, and scrolling it forward
-  closes the shade. Flick out in quick settings returns to the watch face.
-- The **notification panel** is a full-screen container with a list inside. While the list can
-  scroll up, it gets the "scroll back" action; at the top only the container offers it, and
-  scrolling the container back closes the panel.
-- The **Home** key opens the app list, not the watch face, and **Back on the watch face** also
-  toggles the app list. So "back" is skipped on the watch face. The watch face is recognized by
-  having no text and nothing clickable on screen (its layout only has a content description
-  such as "Watch face 13:07").
-
-Other watches may differ. The debug log shows the structure of each screen before an action.
-
-### Publishing a release
-
-Releases are built by [.github/workflows/release.yml](.github/workflows/release.yml) when a tag
-`v*` is pushed. The workflow runs the unit tests, builds the release APK signed with the release
-key, and attaches `WristGestures-<version>.apk` to a new GitHub release. The version comes from
-the tag: `v1.2.3` → versionName `1.2.3`, versionCode `10203`.
-
-```bash
-git tag v1.0.1
-git push origin v1.0.1
-```
-
-**One-time setup.** The signing key is not stored in the repository. Add it under
-**Settings → Secrets and variables → Actions → New repository secret**:
-
-| Secret | Value |
-|---|---|
-| `SIGNING_KEYSTORE_BASE64` | the keystore file encoded with base64 (`base64 -w0 release.jks`) |
-| `SIGNING_KEYSTORE_PASSWORD` | keystore password |
-| `SIGNING_KEY_ALIAS` | key alias |
-| `SIGNING_KEY_PASSWORD` | key password |
-
-For local release builds put the same data into `keystore.properties` in the project root
-(git-ignored):
-
-```properties
-storeFile=keystore/release.jks
-storePassword=...
-keyAlias=...
-keyPassword=...
-```
-
-> **Keep a backup of the keystore and passwords.** If the key is lost, new versions can no
-> longer be installed as updates: every user would have to uninstall the app first.
+- [docs/ALGORITHM.md](docs/ALGORITHM.md) — how gestures are recognized, with real measurements.
+- [docs/SYSTEM_UI.md](docs/SYSTEM_UI.md) — how the TicWatch system UI works and why actions are
+  implemented the way they are.
+- [docs/RELEASING.md](docs/RELEASING.md) — publishing a release and APK signing.
 
 ### Adding a new action
 
@@ -351,6 +364,11 @@ It automatically appears in the list of actions on the settings screen.
    and a row in `activity_main.xml`.
 3. Cover it with a test in `FlickRecognizerTest`.
 
+Pull requests are welcome.
+
 ## License
 
 [MIT](LICENSE). Use, modify and share freely.
+
+This project is not affiliated with Mobvoi or Google. TicWatch is a trademark of Mobvoi,
+Wear OS is a trademark of Google LLC. The app is provided "as is", without warranty.
