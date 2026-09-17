@@ -112,7 +112,7 @@ APK появится в `app/build/outputs/apk/release/app-release.apk`.
 ### 3. Установить
 
 ```bash
-adb install -r WristGestures-1.0.0.apk
+adb install -r WristGestures-1.0.1.apk
 ```
 
 Обновление до новой версии ставится так же, настройки и включённая служба сохраняются.

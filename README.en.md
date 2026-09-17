@@ -111,7 +111,7 @@ it cannot update the official release: uninstall one before installing the other
 ### 3. Install
 
 ```bash
-adb install -r WristGestures-1.0.0.apk
+adb install -r WristGestures-1.0.1.apk
 ```
 
 Updating to a newer release works the same way; settings and the enabled service are kept.
