@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wrist Gestures</string>
+
+    <string name="accessibility_description">Brings back Wear OS 2 wrist gestures. Flick your wrist to open notifications and scroll lists, shake it to go back. The gyroscope is used only while the screen is on. The app has no internet access and does not read screen content in the background.</string>
+
+    <string name="service_on">Service is on</string>
+    <string name="service_off">Service is off, enable it (see below)</string>
+    <string name="no_gyroscope">This watch has no gyroscope</string>
+
+    <string name="test_prompt">Flick your wrist to test</string>
+    <string name="live_values">X %1$4.1f  Y %2$4.1f  Z %3$4.1f</string>
+
+    <string name="gesture_flick_out">Flick out</string>
+    <string name="gesture_flick_in">Flick in</string>
+    <string name="gesture_shake">Shake</string>
+
+    <string name="enabled">Gestures</string>
+    <string name="sensitivity">Sensitivity</string>
+    <string name="sensitivity_value">%1$d\n%2$.1f rad/s</string>
+    <string name="minus">−</string>
+    <string name="plus">+</string>
+    <string name="invert">Invert direction</string>
+    <string name="haptics">Vibration</string>
+
+    <string name="actions_header">Actions (tap to change)</string>
+    <string name="action_row">%1$s: %2$s</string>
+    <string name="action_none">nothing</string>
+    <string name="action_next">scroll down / notifications</string>
+    <string name="action_previous">scroll up / back</string>
+    <string name="action_open_notifications">notifications</string>
+    <string name="action_back">back</string>
+    <string name="action_home">watch face</string>
+
+    <string name="advanced_header">Advanced</string>
+    <string name="axis">Gyroscope axis: %1$s</string>
+    <string name="open_accessibility">Accessibility settings</string>
+    <string name="enable_hint">If the service is not listed in the settings, enable it from a computer with adb. The command is in the README.</string>
+</resources>

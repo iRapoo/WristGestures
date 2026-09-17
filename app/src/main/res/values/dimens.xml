@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- About 15% / 10% of a typical round screen, so edges are not clipped. -->
+    <dimen name="round_padding_horizontal">24dp</dimen>
+    <dimen name="round_padding_vertical">32dp</dimen>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-feature android:name="android.hardware.type.watch" />
+    <uses-feature
+        android:name="android.hardware.sensor.gyroscope"
+        android:required="true" />
+
+    <!-- Short haptic tick when a gesture is recognized. -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- There is deliberately no INTERNET permission: nothing ever leaves the watch. -->
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher"
+        android:theme="@android:style/Theme.DeviceDefault">
+
+        <!-- The app does not need a companion phone app. -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
+        <!-- Settings and calibration screen. -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:taskAffinity="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+            The accessibility service is what makes the app work: it listens to the gyroscope
+            while the screen is on and performs scroll / swipe / back actions on behalf of the
+            user. BIND_ACCESSIBILITY_SERVICE guarantees that only the system can bind to it.
+        -->
+        <service
+            android:name=".service.GestureService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+    </application>
+</manifest>

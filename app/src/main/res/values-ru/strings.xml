@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Жесты кистью</string>
+
+    <string name="accessibility_description">Возвращает жесты кистью из Wear OS 2. Поворот кисти открывает уведомления и листает списки, встряхивание возвращает назад. Гироскоп работает только при включённом экране. У приложения нет доступа в интернет, и оно не читает содержимое экрана в фоне.</string>
+
+    <string name="service_on">Служба включена</string>
+    <string name="service_off">Служба выключена, включите её (см. ниже)</string>
+    <string name="no_gyroscope">На этих часах нет гироскопа</string>
+
+    <string name="test_prompt">Поверните кисть для проверки</string>
+    <string name="live_values">X %1$4.1f  Y %2$4.1f  Z %3$4.1f</string>
+
+    <string name="gesture_flick_out">От себя</string>
+    <string name="gesture_flick_in">К себе</string>
+    <string name="gesture_shake">Встряхивание</string>
+
+    <string name="enabled">Жесты</string>
+    <string name="sensitivity">Чувствительность</string>
+    <string name="sensitivity_value">%1$d\n%2$.1f рад/с</string>
+    <string name="minus">−</string>
+    <string name="plus">+</string>
+    <string name="invert">Обратное направление</string>
+    <string name="haptics">Вибрация</string>
+
+    <string name="actions_header">Действия (нажмите, чтобы сменить)</string>
+    <string name="action_row">%1$s: %2$s</string>
+    <string name="action_none">ничего</string>
+    <string name="action_next">вниз / уведомления</string>
+    <string name="action_previous">вверх / назад</string>
+    <string name="action_open_notifications">уведомления</string>
+    <string name="action_back">назад</string>
+    <string name="action_home">циферблат</string>
+
+    <string name="advanced_header">Дополнительно</string>
+    <string name="axis">Ось гироскопа: %1$s</string>
+    <string name="open_accessibility">Спец. возможности</string>
+    <string name="enable_hint">Если службы нет в настройках, включите её с компьютера через adb. Команда есть в README.</string>
+</resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Settings / calibration screen. Plain framework views keep the APK tiny.
+    Large horizontal padding keeps content inside the round display.
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/round_padding_horizontal"
+        android:paddingVertical="@dimen/round_padding_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+        <TextView
+            android:id="@+id/service_status"
+            style="@style/Caption"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Calibration -->
+        <TextView
+            android:id="@+id/last_gesture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/test_area"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/test_prompt"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+        <TextView
+            android:id="@+id/live_values"
+            style="@style/Caption"
+            android:fontFamily="monospace" />
+
+        <Switch
+            android:id="@+id/enabled_switch"
+            style="@style/Row"
+            android:text="@string/enabled" />
+
+        <!-- Sensitivity: [-] value [+] -->
+        <TextView
+            style="@style/Caption"
+            android:layout_marginTop="8dp"
+            android:text="@string/sensitivity" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/sensitivity_minus"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="@string/minus" />
+
+            <TextView
+                android:id="@+id/sensitivity_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/sensitivity_plus"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="@string/plus" />
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/invert_switch"
+            style="@style/Row"
+            android:text="@string/invert" />
+
+        <Switch
+            android:id="@+id/haptics_switch"
+            style="@style/Row"
+            android:text="@string/haptics" />
+
+        <!-- Actions: tap a row to cycle through the available actions -->
+        <TextView
+            style="@style/Caption"
+            android:layout_marginTop="12dp"
+            android:text="@string/actions_header" />
+
+        <Button
+            android:id="@+id/action_flick_out"
+            style="@style/Row" />
+
+        <Button
+            android:id="@+id/action_flick_in"
+            style="@style/Row" />
+
+        <Button
+            android:id="@+id/action_shake"
+            style="@style/Row" />
+
+        <!-- Advanced -->
+        <TextView
+            style="@style/Caption"
+            android:layout_marginTop="12dp"
+            android:text="@string/advanced_header" />
+
+        <Button
+            android:id="@+id/axis_button"
+            style="@style/Row" />
+
+        <Button
+            android:id="@+id/open_accessibility"
+            style="@style/Row"
+            android:text="@string/open_accessibility" />
+
+        <TextView
+            style="@style/Caption"
+            android:layout_marginTop="8dp"
+            android:text="@string/enable_hint" />
+    </LinearLayout>
+</ScrollView>

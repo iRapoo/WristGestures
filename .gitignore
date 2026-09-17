@@ -1,0 +1,16 @@
+*.iml
+.gradle/
+.kotlin/
+.idea/
+build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+.DS_Store
+
+# Release signing key and its passwords: never commit them.
+keystore/
+keystore.properties
+*.jks
+*.keystore
